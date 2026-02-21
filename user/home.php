@@ -15,7 +15,7 @@
                     </p>
                     <div class="button">
                         <?php if ($isLoggedIn): ?>
-                            <a href="#pricing" class="btn primary-btn">Mulai Daftar</a>
+                            <a href="#pricing" class="btn primary-btn">Pesan</a>
                         <?php else: ?>
                             <a href="#login-customer" class="btn primary-btn">Mulai Daftar</a>
                         <?php endif; ?>

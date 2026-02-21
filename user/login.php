@@ -1,4 +1,6 @@
-<?php ?>
+<?php
+include 'register.php';
+?>
 
 <section id="login-customer" class="pricing-area pricing-fourteen"
          style="background-color: #f9f9f9; padding-top: 150px; margin-top: -70px; padding-bottom: 80px;">
@@ -18,14 +20,13 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-5 col-md-8 col-12">
-                <form action="login_process.php" method="POST" class="card shadow-sm border-0 p-4">
-
+                <form id="formLogin" class="card shadow-sm border-0 p-4">
                     <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
+                        <label for="phone" class="form-label">Nomor WhatsApp</label>
                         <div class="input-group">
-                            <span class="input-group-text bg-white"><i class="lni lni-user"></i></span>
-                            <input type="text" class="form-control" id="username" name="username"
-                                   placeholder="Masukkan username" required>
+                            <span class="input-group-text bg-white"><i class="lni lni-phone"></i></span>
+                            <input type="tel" class="form-control" id="phone" name="phone"
+                                   placeholder="0812xxxx" required>
                         </div>
                     </div>
 
@@ -39,7 +40,7 @@
                     </div>
 
                     <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary py-2">Masuk</button>
+                        <button type="submit" id="btnLogin" class="btn btn-primary py-2 text-white" style="background-color: #4f46e5; border: none;">Masuk</button>
                     </div>
 
                     <div class="text-center mt-4">
@@ -49,7 +50,6 @@
                             Daftar Sekarang
                         </a>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -57,76 +57,54 @@
 </section>
 
 <script>
-    function registerPopup() {
-        Swal.fire({
-            title: 'Registrasi Akun',
-            html: `
-            <div class="text-start mb-2">
-                <label class="small fw-bold">Nomor WhatsApp</label>
-                <input type="tel" id="reg_phone" class="swal2-input m-0 w-100" placeholder="0812xxxx">
-            </div>
-            <div class="text-start mt-3">
-                <label class="small fw-bold">Buat Password</label>
-                <input type="password" id="reg_password" class="swal2-input m-0 w-100" placeholder="******">
-            </div>
-            <div class="text-start mt-3">
-                <label class="small fw-bold">Ulangi Password</label>
-                <input type="password" id="reg_confirm" class="swal2-input m-0 w-100" placeholder="******">
-            </div>
-        `,
-            confirmButtonText: 'Daftar Sekarang',
-            confirmButtonColor: '#4f46e5',
-            showCancelButton: true,
-            cancelButtonText: 'Batal',
-            focusConfirm: false,
-            preConfirm: () => {
-                const phone = Swal.getPopup().querySelector('#reg_phone').value;
-                const password = Swal.getPopup().querySelector('#reg_password').value;
-                const confirm = Swal.getPopup().querySelector('#reg_confirm').value;
+    // Sekarang ID 'formLogin' sudah ada, jadi listener ini akan bekerja
+    document.getElementById('formLogin')?.addEventListener('submit', function (e) {
+        e.preventDefault();
 
-                // Validasi di sisi Client
-                if (!phone || !password || !confirm) {
-                    Swal.showValidationMessage(`Harap isi semua field!`);
-                    return false;
-                }
-                if (password !== confirm) {
-                    Swal.showValidationMessage(`Konfirmasi password tidak cocok!`);
-                    return false;
-                }
-                if (password.length < 6) {
-                    Swal.showValidationMessage(`Password minimal 6 karakter!`);
-                    return false;
-                }
+        const btn = document.getElementById('btnLogin');
+        const originalText = btn.textContent;
 
-                return { phone: phone, password: password };
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                const formData = new FormData();
-                formData.append('phone', result.value.phone);
-                formData.append('password', result.value.password);
+        btn.disabled = true;
+        btn.textContent = 'Mengecek...';
 
-                fetch('register_process.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.status === 'success') {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Berhasil!',
-                                text: 'Akun Anda sudah aktif, silakan login.',
-                                confirmButtonColor: '#4f46e5'
-                            });
-                        } else {
-                            Swal.fire('Gagal!', data.message, 'error');
-                        }
-                    })
-                    .catch(error => {
-                        Swal.fire('Error!', 'Gagal menghubungi server.', 'error');
+        const formData = new FormData(this);
+
+        fetch('user/login_process.php', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => {
+                if (!response.ok) throw new Error('Response server tidak ok');
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil Login!',
+                        text: 'Selamat datang kembali!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        // Reload total ke index.php
+                        window.location.href = 'index.php';
                     });
-            }
-        });
-    }
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Login Gagal',
+                        text: data.message,
+                        confirmButtonColor: '#4f46e5'
+                    });
+                    btn.disabled = false;
+                    btn.textContent = originalText;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire('Error!', 'Gagal menghubungi server atau terjadi kesalahan sistem.', 'error');
+                btn.disabled = false;
+                btn.textContent = originalText;
+            });
+    });
 </script>

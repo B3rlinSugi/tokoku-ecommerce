@@ -3,9 +3,9 @@ session_start();
 //var_dump($_SESSION); // debuging, check session
 
 $isLoggedIn = !empty($_SESSION['user_id']);
-if (!$isLoggedIn) {
+/*if (!$isLoggedIn) {
     $_SESSION['flash'] = ['type' => 'error', 'msg' => 'Silakan login terlebih dahulu'];
-}
+}*/
 
 
 

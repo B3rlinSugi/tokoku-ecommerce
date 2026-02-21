@@ -1,4 +1,6 @@
-<?php ?>
+<?php
+$foto_path="/uploads/adat/";
+?>
 <section id="katalog" class="services-area services-eight">
     <!-- judul/teks pengantar -->
     <div class="section-title-five">
@@ -27,7 +29,7 @@
             <div class="row g-4">
                 <?php if ($res && $res->num_rows): ?>
                     <?php while ($row = $res->fetch_assoc()):
-                        $img = !empty($row['foto_path']) ? esc($row['foto_path']) : 'assets/img/placeholder.jpg';
+                        $img = !empty($row['foto_path']) ? esc($foto_path.$row['foto_path']) : 'assets/img/placeholder.jpg';
                         ?>
                         <div class="col-lg-4 col-md-6">
                             <div class="card h-100 shadow-sm border-0">

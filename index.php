@@ -1,4 +1,13 @@
 <?php
+session_start();
+//var_dump($_SESSION); // debuging, check session
+
+$isLoggedIn = !empty($_SESSION['user_id']);
+if (!$isLoggedIn) {
+    $_SESSION['flash'] = ['type' => 'error', 'msg' => 'Silakan login terlebih dahulu'];
+}
+
+
 
 require_once __DIR__ . '/config/config.php'; // beracu pada percakapanmu sebelumnya
 // Ambil data katalog
@@ -36,6 +45,8 @@ foreach ($katalogList as $r) {
 }
 $namaAdat = $selectedRow ? $selectedRow['nama_adat'] : '';
 $hargaAsli = $selectedRow ? (float)$selectedRow['harga'] : 0;
+
+
 ?>
 
 <!DOCTYPE html>
@@ -90,7 +101,12 @@ include 'user/home.php';
 include 'user/about.php';
 include 'user/catalog.php';
 include 'user/rules.php';
-include 'user/pricing.php';
+if ($isLoggedIn){
+    include 'user/pricing.php';
+}else{
+    include 'user/login.php';
+}
+
 include 'user/footer.php';
 ?>
 

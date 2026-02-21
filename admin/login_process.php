@@ -51,7 +51,7 @@ try {
     }
 
     // Sukses
-    $_SESSION['user_id']  = (int)$idadmin;
+    $_SESSION['admin_id']  = (int)$idadmin;
     $_SESSION['username'] = (string)$username;
     $_SESSION['flash'] = ['type' => 'success', 'msg' => 'Login berhasil'];
     header('Location: login.php'); // balik ke login untuk munculin alert dulu

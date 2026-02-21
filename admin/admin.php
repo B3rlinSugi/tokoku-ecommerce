@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (empty($_SESSION['user_id'])) {
+if (empty($_SESSION['admin_id'])) {
     // optional: kirim flash juga
     $_SESSION['flash'] = ['type' => 'error', 'msg' => 'Silakan login terlebih dahulu'];
     header('Location: login.php');

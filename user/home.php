@@ -14,12 +14,16 @@
                         keduanya.
                     </p>
                     <div class="button">
-                        <a href="#pricing" class="btn primary-btn">Mulai Daftar</a>
+                        <?php if ($isLoggedIn): ?>
+                            <a href="#pricing" class="btn primary-btn">Mulai Daftar</a>
+                        <?php else: ?>
+                            <a href="#login-customer" class="btn primary-btn">Mulai Daftar</a>
+                        <?php endif; ?>
                         <a href="https://www.youtube.com/watch?v=CGoxTMkNbmQ"
                            class="glightbox video-button">
-                <span class="btn icon-btn rounded-full">
-                  <i class="lni lni-play"></i>
-                </span>
+                            <span class="btn icon-btn rounded-full">
+                              <i class="lni lni-play"></i>
+                            </span>
                             <span class="text">Lihat Intro</span>
                         </a>
                     </div>

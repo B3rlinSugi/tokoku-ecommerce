@@ -2,7 +2,7 @@
 session_start();
 
 try {
-    require __DIR__ . '/config/config.php';
+    require __DIR__ . '/../config/config.php';
 } catch (Throwable $e) {
     $_SESSION['flash'] = ['type' => 'error', 'msg' => 'Server/database error'];
     header('Location: login.php');

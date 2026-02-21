@@ -1,0 +1,70 @@
+/* Agar gambar proporsional di dalam ratio */
+.object-fit-cover {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+/* ===== Rules (Aturan Sewa) Cards ===== */
+.rules-area .rule-card {
+    position: relative;
+    background: #fff;
+    border-radius: 18px;
+    padding: 22px 22px 20px;
+    border: 1px solid rgba(0, 0, 0, .06);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .05);
+    transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+    overflow: hidden;
+}
+
+/* subtle highlight sweep */
+.rules-area .rule-card::after {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(80% 60% at 20% 0%,
+    rgba(99, 102, 241, .08), transparent 60%);
+    transform: translateX(-20%);
+    transition: transform .6s ease;
+    pointer-events: none;
+}
+
+.rules-area .rule-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, .10);
+    border-color: rgba(99, 102, 241, .25);
+    /* ungu lembut */
+}
+
+.rules-area .rule-card:hover::after {
+    transform: translateX(10%);
+}
+
+.rules-area .rule-icon {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, .15), rgba(59, 130, 246, .15));
+    color: #4f46e5;
+    /* fallback icon color */
+    margin-bottom: 14px;
+    font-size: 22px;
+}
+
+.rules-area .rule-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+
+body .scroll-top {
+    left: 16px !important;
+    right: auto !important;
+}
+
+.rules-area p {
+    color: #444;
+}

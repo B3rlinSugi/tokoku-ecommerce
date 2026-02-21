@@ -152,3 +152,7 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+-- Ganti notlp jadi varchar. JANGAN INT, ada limitasi maksimal 2147483647, sedangkan nomor telepon bisa lebih panjang dari itu.
+ALTER TABLE dbrias.tbsewa MODIFY COLUMN notelp varchar(30) NOT NULL;

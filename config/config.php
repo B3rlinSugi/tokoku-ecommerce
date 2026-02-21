@@ -5,7 +5,7 @@ $DB_HOST = '127.0.0.1';   // atau localhost
 $DB_PORT = '3306';        // ganti jika non-standar
 $DB_NAME = 'dbrias';      // <<< pakai db yang sama dengan crupdate.php
 $DB_USER = 'root';
-$DB_PASS = '';
+$DB_PASS = 'root';
 $DB_SOCKET = '';          // kosongkan kalau tidak pakai socket
 
 

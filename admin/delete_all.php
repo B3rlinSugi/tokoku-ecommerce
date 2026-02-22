@@ -2,7 +2,7 @@
 session_start();
 header('Content-Type: application/json');
 
-if (empty($_SESSION['user_id'])) {
+if (empty($_SESSION['admin_id'])) {
   http_response_code(401);
   echo json_encode(['success'=>false,'message'=>'Unauthorized']);
   exit;

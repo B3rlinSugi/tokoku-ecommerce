@@ -2,7 +2,7 @@
 session_start();
 
 try {
-    require __DIR__ . '/config/config.php';
+    require __DIR__ . '/../config/config.php';
 } catch (Throwable $e) {
     $_SESSION['flash'] = ['type' => 'error', 'msg' => 'Server/database error'];
     header('Location: login.php');
@@ -51,7 +51,7 @@ try {
     }
 
     // Sukses
-    $_SESSION['user_id']  = (int)$idadmin;
+    $_SESSION['admin_id']  = (int)$idadmin;
     $_SESSION['username'] = (string)$username;
     $_SESSION['flash'] = ['type' => 'success', 'msg' => 'Login berhasil'];
     header('Location: login.php'); // balik ke login untuk munculin alert dulu

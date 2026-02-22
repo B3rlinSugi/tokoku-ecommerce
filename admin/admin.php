@@ -1,13 +1,14 @@
 <?php
 session_start();
-if (empty($_SESSION['user_id'])) {
+if (empty($_SESSION['admin_id'])) {
     // optional: kirim flash juga
     $_SESSION['flash'] = ['type' => 'error', 'msg' => 'Silakan login terlebih dahulu'];
     header('Location: login.php');
     exit;
 }
 
-require __DIR__ . '/config/config.php';
+require __DIR__ . '/../config/config.php';
+$foto_path="/../uploads/adat/";
 
 try {
     // DSN (pakai port kalau perlu)
@@ -373,7 +374,7 @@ try {
                                         <?= htmlspecialchars($row['nama_adat']) ?>
                                     </td>
                                     <td class="px-4 py-3 align-middle" data-field="foto_path">
-                                        <img src="<?= htmlspecialchars($row['foto_path']) ?>" alt="Foto Adat"
+                                        <img src="<?= htmlspecialchars($foto_path.$row['foto_path']) ?>" alt="Foto Adat"
                                             class="h-14 w-20 object-cover rounded-lg border border-white/10">
                                     </td>
                                     <td class="px-4 py-3 align-middle max-w-[28rem]" data-field="isi_desk">
@@ -598,7 +599,7 @@ try {
         // ===================== Load awal SEWA =====================
         async function loadSewaAwal() {
             try {
-                const res = await fetch('logic_admin/sewa_list.php'); // pastikan path
+                const res = await fetch('sewa_list.php'); // pastikan path
                 const data = await res.json(); // {ok:true, rows:[...]}
                 if (!data.ok) throw new Error(data.message || 'Gagal load');
                 const tbody = document.getElementById('tbodySewa');
@@ -628,7 +629,7 @@ try {
             try {
                 const body = new URLSearchParams();
                 body.set('idsewa', String(idsewa));
-                const r = await fetch('logic_admin/sewa_confirm.php', {
+                const r = await fetch('sewa_confirm.php', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -668,7 +669,7 @@ try {
 
         window.onKirimEmail = async function(idsewa) {
             try {
-                const r = await fetch('logic_admin/sewa_resend_invoice.php', {
+                const r = await fetch('sewa_resend_invoice.php', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -702,7 +703,7 @@ try {
             const alasan = ask.value.trim();
 
             try {
-                const r = await fetch('logic_admin/sewa_reject.php', {
+                const r = await fetch('sewa_reject.php', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -766,7 +767,7 @@ try {
                 const params = new URLSearchParams();
                 params.set('idsewa', String(idsewa));
                 if (isPelunasan) params.set('pelunasan', '1');
-                const r = await fetch('logic_admin/sewa_pay_confirm.php', {
+                const r = await fetch('sewa_pay_confirm.php', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -808,7 +809,7 @@ try {
                 const p = new URLSearchParams();
                 p.set('idsewa', String(idsewa));
                 p.set('pelunasan', '1');
-                const r = await fetch('logic_admin/sewa_pay_confirm.php', {
+                const r = await fetch('sewa_pay_confirm.php', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -987,7 +988,7 @@ try {
             if (!res.isConfirmed) return;
 
             try {
-                const r = await fetch('logic_admin/sewa_update.php', {
+                const r = await fetch('sewa_update.php', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -1033,7 +1034,7 @@ try {
             btn.disabled = true;
 
             try {
-                const r = await fetch('logic_admin/delete_all_sewa.php', {
+                const r = await fetch('delete_all_sewa.php', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json'
@@ -1132,7 +1133,7 @@ try {
                     fd.append('harga', res.value.harga);
                     fd.append('foto_file', document.getElementById('foto_file').files[0]);
 
-                    const r = await fetch('logic_admin/crupdate.php', {
+                    const r = await fetch('crupdate.php', {
                         method: 'POST',
                         body: fd
                     });
@@ -1160,7 +1161,7 @@ try {
             if (!res.isConfirmed) return;
 
             try {
-                const r = await fetch('logic_admin/delete_all.php', {
+                const r = await fetch('delete_all.php', {
                     method: 'POST'
                 });
                 const data = await r.json().catch(() => ({}));
@@ -1238,7 +1239,7 @@ try {
                     const f = document.getElementById('ed_foto_file').files?.[0];
                     if (f) fd.append('foto_file', f);
 
-                    const r = await fetch('logic_admin/crupdate.php', {
+                    const r = await fetch('crupdate.php', {
                         method: 'POST',
                         body: fd
                     });

@@ -1,176 +1,88 @@
-# 🛒 TokoKu - E-Commerce Web Application
+# 🛒 TokoKu — E-Commerce Platform
 
-![PHP](https://img.shields.io/badge/PHP-8.x-777BB4?style=flat&logo=php&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=flat&logo=mysql&logoColor=white)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![PHP](https://img.shields.io/badge/PHP-8.x-777BB4?style=flat-square&logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=flat-square&logo=mysql&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=flat-square&logo=bootstrap&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-> Platform e-commerce berbasis web untuk siklus penjualan dan pembelian lengkap dengan manajemen stok item secara otomatis.
-
-🌐 **Live Demo:** [https://tokokuweb.rf.gd](https://tokokuweb.rf.gd)
+Full-stack e-commerce backend built with PHP and MySQL, supporting complete order lifecycle management from cart to delivery confirmation.
 
 ---
 
-## 📋 Tentang Project
+## Features
 
-TokoKu adalah aplikasi e-commerce yang dibangun menggunakan PHP dan MySQL. Project ini mencakup siklus penjualan dan pembelian lengkap mulai dari registrasi pelanggan, browse produk, checkout, hingga manajemen stok dan laporan penjualan oleh admin.
+**Customer**
+- Register, login, and profile management with password reset via tokenized email flow
+- Product catalog with category filter and search
+- Shopping cart and checkout with voucher/discount support
+- Multiple payment methods — bank transfer (BCA, BRI, Mandiri, BNI) and e-wallet (GoPay, OVO, DANA, ShopeePay)
+- Order tracking, invoice, and real-time notifications
 
----
-
-## ✨ Fitur Utama
-
-### 👤 Pelanggan
-- Registrasi & Login dengan sistem keamanan CSRF
-- Browse produk dengan filter kategori dan pencarian
-- Detail produk dengan rating & ulasan
-- Keranjang belanja (tambah, ubah, hapus)
-- Checkout dengan 3 metode pembayaran (Transfer Bank, COD, E-Wallet)
-- Kode voucher diskon
-- Cetak invoice pesanan
-- Riwayat & tracking status pesanan
-- Ulasan & rating produk
-- Notifikasi real-time update pesanan
-- Profil dengan upload foto
-- Lupa password dengan token reset
-
-### 🔧 Admin
-- Dashboard dengan statistik lengkap & grafik (Chart.js)
-- Manajemen produk (CRUD + upload gambar)
-- Manajemen stok (masuk/keluar + riwayat)
-- Manajemen pesanan (update status + notifikasi otomatis)
-- Laporan penjualan dengan grafik harian & pie chart metode bayar
-- Manajemen user (reset password, aktif/nonaktif)
+**Admin**
+- Dashboard with daily revenue charts, best-selling products, and payment breakdowns (Chart.js)
+- Order and product management with real-time stock tracking
+- Voucher management with percentage or fixed-amount discounts, spending minimums, usage quotas, and expiry dates
+- User and report management
 
 ---
 
-## 🛠️ Teknologi
+## Tech Stack
 
-| Teknologi | Kegunaan |
-|-----------|----------|
-| PHP 8.x | Backend & server-side logic |
-| MySQL | Database |
-| PDO | Koneksi database yang aman |
-| HTML5 | Struktur halaman |
-| CSS3 | Styling & responsive design |
-| JavaScript | Interaksi dinamis |
-| Chart.js | Grafik dashboard & laporan |
+| Layer | Technology |
+|---|---|
+| Backend | PHP 8, PDO |
+| Database | MySQL 8 (10 tables, Foreign Keys, InnoDB) |
+| Frontend | Bootstrap 5, Vanilla JS, Chart.js |
+| Auth | Role-Based Access Control, bcrypt, Session |
+| Security | Prepared Statements, Tokenized Password Reset |
 
 ---
 
-## 📁 Struktur Project
+## Database Schema
 
 ```
-ecommerce/
-├── admin/
-│   ├── dashboard.php      # Panel admin utama
-│   ├── produk.php         # Manajemen produk
-│   ├── stok.php           # Manajemen stok
-│   ├── pesanan.php        # Manajemen pesanan
-│   ├── laporan.php        # Laporan penjualan
-│   └── users.php          # Manajemen user
-├── assets/
-│   ├── css/style.css      # Global stylesheet
-│   └── js/main.js         # Global JavaScript
-├── config/
-│   └── database.php       # Konfigurasi database
-├── includes/
-│   ├── header.php         # Template header & navbar
-│   └── footer.php         # Template footer
-├── uploads/               # Foto produk & avatar
-├── index.php              # Halaman utama / beranda
-├── login.php              # Halaman login
-├── register.php           # Halaman registrasi
-├── produk_toko_v2.php     # Daftar semua produk
-├── detail_produk.php      # Detail produk & ulasan
-├── keranjang.php          # Keranjang belanja
-├── checkout.php           # Proses checkout
-├── invoice.php            # Cetak invoice
-├── profil.php             # Profil pelanggan
-├── notifikasi.php         # Halaman notifikasi
-├── lupa-password.php      # Lupa password
-└── reset-password.php     # Reset password
+users           — authentication, role (admin/customer)
+produk          — product catalog with stock
+kategori        — product categories
+keranjang       — shopping cart
+pesanan         — order header
+detail_pesanan  — order line items
+voucher         — discount engine
+notifikasi      — per-user notifications
+riwayat_stok    — stock movement history
+password_resets — tokenized reset flow
 ```
 
 ---
 
-## 🚀 Cara Instalasi (Local)
+## Installation
 
-### Prerequisites
-- PHP 8.x
-- MySQL 8.0
-- Web server (Apache/XAMPP)
-
-### Langkah Instalasi
-
-1. **Clone repository**
-   ```bash
-   git clone https://github.com/[username]/tokoku-ecommerce.git
-   cd tokoku-ecommerce
-   ```
-
-2. **Import database**
-   - Buka phpMyAdmin
-   - Buat database baru: `tokoku`
-   - Import file `database/ecommerce.sql`
-
-3. **Konfigurasi database**
-   - Buka `config/database.php`
-   - Sesuaikan credentials:
-   ```php
-   define('DB_HOST', 'localhost');
-   define('DB_USER', 'root');
-   define('DB_PASS', '');
-   define('DB_NAME', 'tokoku');
-   define('BASE_PATH', '/ecommerce');
-   ```
-
-4. **Jalankan di browser**
-   ```
-   http://localhost/ecommerce
-   ```
+1. Clone this repository
+2. Import `database/tokoku.sql` to MySQL
+3. Configure database connection in `config/database.php`
+4. Run on localhost using XAMPP or Laragon
+5. Login as admin: `admin@tokoku.com` / `admin123`
 
 ---
 
-## 👥 Akun Demo
-
-| Role | Email | Password |
-|------|-------|----------|
-| Admin | admin@toko.com | password |
-| Pelanggan | budi@gmail.com | password |
-| Pelanggan | siti@gmail.com | password |
-| Pelanggan | andi@gmail.com | password |
-
----
-
-## 🔄 Alur Siklus Penjualan
+## Project Structure
 
 ```
-Register/Login → Browse Produk → Keranjang → Checkout
-      ↓
-  Pesanan Dibuat (stok berkurang otomatis)
-      ↓
-  Admin: Pending → Diproses → Dikirim → Selesai
-      ↓
-  Pelanggan terima notifikasi setiap update
-      ↓
-  Pelanggan beri ulasan & rating
+tokoku-ecommerce/
+├── config/         — database connection
+├── admin/          — admin panel pages
+├── customer/       — customer pages
+├── auth/           — login, register, password reset
+├── assets/         — CSS, JS, images
+├── includes/       — shared header, footer
+└── database/       — SQL schema
 ```
 
 ---
 
-## 📸 Screenshots
+## Author
 
-> Lihat tampilan lengkap di: [https://tokokuweb.rf.gd](https://tokokuweb.rf.gd)
-
----
-
-## 👨‍💻 Developer
-
-**Berlin Sugiyanto**
-
----
-
-## 📄 Lisensi
-
-Project ini dibuat untuk keperluan portofolio.
+**Berlin Sugiyanto** — Junior Backend Developer
+- GitHub: [github.com/B3rlinSugi](https://github.com/B3rlinSugi)
+- LinkedIn: [linkedin.com/in/berlinsugi](https://linkedin.com/in/berlinsugi)
+- Email: berlinsugiyanto23@gmail.com

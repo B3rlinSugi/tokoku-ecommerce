@@ -1,8 +1,9 @@
 <?php
-define('DB_HOST', 'sql305.infinityfree.com');
-define('DB_USER', 'if0_41333560');
-define('DB_PASS', 'IuGMEY6SXDidMZ4');
-define('DB_NAME', 'if0_41333560_tokoku');
+define('DB_HOST', getenv('MYSQLHOST') ?: 'sql305.infinityfree.com');
+define('DB_USER', getenv('MYSQLUSER') ?: 'if0_41333560');
+define('DB_PASS', getenv('MYSQLPASSWORD') ?: 'IuGMEY6SXDidMZ4');
+define('DB_NAME', getenv('MYSQLDATABASE') ?: 'if0_41333560_tokoku');
+define('DB_PORT', getenv('MYSQLPORT') ?: '3306');
 define('DB_CHARSET', 'utf8mb4');
 define('BASE_PATH', '');
 
@@ -10,7 +11,7 @@ function getDB() {
     static $pdo = null;
     if ($pdo === null) {
         try {
-            $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
+            $dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
             $options = [
                 PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,

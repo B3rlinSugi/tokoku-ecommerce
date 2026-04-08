@@ -125,40 +125,44 @@ require_once __DIR__ . '/includes/header.php';
 
     <div class="product-grid">
         <?php foreach ($produkList as $p): ?>
-        <div class="card product-card">
-            <!-- Gambar bisa diklik -->
-            <a href="<?= BASE_PATH ?>/detail_produk.php?id=<?= $p['id'] ?>" class="produk-card-link">
-                <div class="product-img">
+        <div class="product-card" style="display:flex; flex-direction:column; background:white; position:relative; z-index:1;">
+            <a href="<?= BASE_PATH ?>/detail_produk.php?id=<?= $p['id'] ?>" style="text-decoration:none; color:inherit; flex:1;">
+                <div class="product-card-img" style="position:relative;">
                     <?php if ($p['gambar'] && file_exists(__DIR__.'/uploads/'.$p['gambar'])): ?>
-                        <img src="<?= BASE_PATH ?>/uploads/<?= htmlspecialchars($p['gambar']) ?>" alt="<?= htmlspecialchars($p['nama_produk']) ?>" style="width:100%;height:200px;object-fit:cover">
-                    <?php else: ?>📦<?php endif; ?>
+                        <img src="<?= BASE_PATH ?>/uploads/<?= htmlspecialchars($p['gambar']) ?>" alt="<?= htmlspecialchars($p['nama_produk']) ?>">
+                    <?php else: ?>
+                        <div style="width:100%;height:100%;background:linear-gradient(135deg,#f5f5f5,#e8e8e8);display:flex;align-items:center;justify-content:center;font-size:3rem;">📦</div>
+                    <?php endif; ?>
+                </div>
+                <div class="product-card-body">
+                    <div style="font-size:0.75rem; color:var(--gray); margin-bottom:4px;">📂 <?= htmlspecialchars($p['nama_kategori'] ?? '-') ?></div>
+                    <div class="product-card-name"><?= htmlspecialchars($p['nama_produk']) ?></div>
+                    
+                    <?php if ($p['total_ulasan'] > 0): ?>
+                    <div class="product-card-rating" style="margin-bottom:8px;">
+                        <span class="stars">⭐</span>
+                        <span><?= number_format($p['avg_rating'], 1) ?></span>
+                        <span style="color:#9e9e9e;">(<?= $p['total_ulasan'] ?>)</span>
+                    </div>
+                    <?php endif; ?>
+                    
+                    <div class="product-card-price"><?= rupiahFormat($p['harga']) ?></div>
+                    
+                    <div class="product-card-stok" style="margin-bottom:12px;">
+                        <?= $p['stok']>10?'✅':($p['stok']>0?'⚠️':'❌') ?> Stok: <?= $p['stok'] ?>
+                    </div>
                 </div>
             </a>
-            <div class="card-body">
-                <div style="font-size:.75rem;color:var(--gray);margin-bottom:4px">📂 <?= htmlspecialchars($p['nama_kategori'] ?? '-') ?></div>
-                <!-- Nama bisa diklik -->
-                <a href="<?= BASE_PATH ?>/detail_produk.php?id=<?= $p['id'] ?>" style="text-decoration:none;color:inherit">
-                    <div class="product-name" style="margin-bottom:4px"><?= htmlspecialchars($p['nama_produk']) ?></div>
-                </a>
-                <!-- Rating mini -->
-                <?php if ($p['total_ulasan'] > 0): ?>
-                <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px">
-                    <span class="mini-stars"><?= str_repeat('★', round($p['avg_rating'])) . str_repeat('☆', 5 - round($p['avg_rating'])) ?></span>
-                    <span style="font-size:.72rem;color:#9e9e9e">(<?= $p['total_ulasan'] ?>)</span>
-                </div>
-                <?php endif; ?>
-                <div class="product-price"><?= rupiahFormat($p['harga']) ?></div>
-                <div class="product-stok">
-                    <?= $p['stok']>10?'✅':($p['stok']>0?'⚠️':'❌') ?> Stok: <?= $p['stok'] ?>
-                </div>
+            
+            <div style="padding: 0 12px 12px 12px; z-index:2; position:relative;">
                 <?php if ($p['stok'] > 0): ?>
                     <?php if (isLogin()): ?>
-                        <button onclick="tambahKeKeranjang(<?= $p['id'] ?>)" class="btn btn-primary btn-sm btn-full">🛒 Tambah ke Keranjang</button>
+                        <button onclick="tambahKeKeranjang(<?= $p['id'] ?>)" class="btn btn-primary btn-sm" style="width:100%; font-weight:700;">🛒 Tambah ke Keranjang</button>
                     <?php else: ?>
-                        <a href="<?= BASE_PATH ?>/login.php" class="btn btn-outline btn-sm btn-full">🔐 Login untuk Beli</a>
+                        <a href="<?= BASE_PATH ?>/login.php" class="btn btn-outline btn-sm" style="width:100%; text-align:center; font-weight:700;">🔐 Login untuk Beli</a>
                     <?php endif; ?>
                 <?php else: ?>
-                    <button disabled class="btn btn-sm btn-full" style="background:#e2e8f0;color:#94a3b8;cursor:not-allowed">❌ Habis</button>
+                    <button disabled class="btn btn-sm" style="width:100%; background:#e2e8f0; color:#94a3b8; cursor:not-allowed; font-weight:700;">❌ Habis</button>
                 <?php endif; ?>
             </div>
         </div>

@@ -27,7 +27,7 @@ $totalBatal = $totalBatal->fetchColumn();
 $avgOrder = $totalSelesai > 0 ? $totalOmzetBulan / $totalSelesai : 0;
 
 // ===== GRAFIK HARIAN =====
-$hariDalamBulan = cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun);
+$hariDalamBulan = (int) date('t', mktime(0, 0, 0, $bulan, 1, $tahun));
 $grafikLabels = []; $grafikData = [];
 for ($h = 1; $h <= $hariDalamBulan; $h++) {
     $tgl  = sprintf('%04d-%02d-%02d', $tahun, $bulan, $h);

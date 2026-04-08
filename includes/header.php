@@ -28,6 +28,7 @@ $searchQuery = htmlspecialchars($_GET['q'] ?? '');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $pageTitle ?? 'TokoKu - Belanja Online Terpercaya' ?></title>
     <link rel="stylesheet" href="<?= BASE_PATH ?>/assets/css/style.css">
+    <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
 

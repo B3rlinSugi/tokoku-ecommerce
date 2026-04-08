@@ -97,7 +97,8 @@ try {
         color: #666
       }
     </style>
-  </head>
+      <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+</head>
 
   <body>
     <h1>Invoice #<?= h($row['idsewa']) ?></h1>

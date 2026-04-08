@@ -85,6 +85,7 @@ $csrfToken = generateCsrfToken();
         .pass-toggle:hover { color: #ee4d2d; }
         @media (max-width: 768px) { .left-panel { display: none; } .right-panel { width: 100%; padding: 32px 24px; } }
     </style>
+    <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
     <div class="left-panel">

@@ -171,6 +171,7 @@ body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f5f5f5; }
 }
 @keyframes popIn { from { transform: scale(.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 </style>
+    <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
 <div class="admin-layout">

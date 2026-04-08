@@ -72,7 +72,8 @@ try {
       h2{margin:0 0 8px 0} table{border-collapse:collapse;width:100%;margin-top:10px}
       th,td{border:1px solid #ddd;padding:8px} th{text-align:left;background:#f5f5f5}
       .right{text-align:right}
-    </style></head><body>
+    </style>    <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+</head><body>
       <h2>Kwitansi Pelunasan DP — #<?= h($row['idsewa']) ?></h2>
       <p>Nama: <?= h($row['nama_cust']) ?> | Email: <?= h($row['email']) ?></p>
       <p>Paket: <?= h($row['nama_adat'] ?? $row['idadat']) ?> | Tgl Sewa: <?= h($row['tgl_sewa']) ?></p>

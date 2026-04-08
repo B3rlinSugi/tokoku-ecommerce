@@ -134,6 +134,7 @@ tbody tr:last-child td{border-bottom:none}
 
 @media print{.admin-sidebar,.admin-topbar,.no-print{display:none!important}.admin-content{margin-left:0!important;width:100%!important}}
 </style>
+    <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
 <div class="admin-layout">

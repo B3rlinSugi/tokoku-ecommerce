@@ -61,6 +61,7 @@ body{font-family:'Segoe UI',sans-serif;min-height:100vh;display:flex;background:
 .token-code{font-family:monospace;font-size:.78rem;color:#1a1a2e;word-break:break-all;font-weight:600;}
 @media(max-width:768px){.left-panel{display:none}.right-panel{width:100%;padding:32px 24px}}
 </style>
+    <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
 

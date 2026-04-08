@@ -59,6 +59,7 @@ body{margin:0;background:#f5f5f5;font-family:'Segoe UI',sans-serif}
 .modal-logout-box{background:white;border-radius:16px;padding:32px;width:100%;max-width:360px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:popIn .25s ease;margin:20px;}
 @keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
 </style>
+    <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
 <div class="admin-layout">

@@ -90,6 +90,7 @@ $csrfToken = generateCsrfToken();
         .required { color: #ee4d2d; }
         @media (max-width: 768px) { .left-panel { display: none; } .right-panel { width: 100%; padding: 28px 20px; } .form-row { grid-template-columns: 1fr; } }
     </style>
+    <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
     <div class="left-panel">

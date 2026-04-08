@@ -57,6 +57,7 @@ $items = $items->fetchAll();
             .invoice-wrap { padding: 16px; }
         }
     </style>
+    <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
 <div class="invoice-wrap">

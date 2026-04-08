@@ -267,6 +267,7 @@ try {
             border: 1px solid rgba(255, 255, 255, .15)
         }
     </style>
+    <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/svg+xml">
 </head>
 
 <body class="min-h-screen">

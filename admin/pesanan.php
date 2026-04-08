@@ -113,6 +113,7 @@ body{margin:0;background:#f5f5f5;font-family:"Segoe UI",sans-serif}
 .pagination .dots{background:transparent;border:none;color:#9e9e9e;cursor:default}
 .pagination-info{text-align:center;font-size:.78rem;color:#9e9e9e;margin-top:4px}
 </style>
+    <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
 <div class="admin-layout">

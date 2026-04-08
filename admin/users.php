@@ -117,6 +117,7 @@ body{margin:0;background:#f5f5f5;font-family:"Segoe UI",sans-serif}
 .pagination-info{text-align:center;font-size:.78rem;color:#9e9e9e;margin-top:4px}
 .pw-strength{height:4px;border-radius:4px;margin-top:5px;transition:all .3s;background:#e0e0e0;width:0}
 </style>
+    <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
 <div class="admin-layout">

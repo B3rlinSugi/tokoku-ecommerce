@@ -203,6 +203,7 @@ session_start();
             color: var(--muted)
         }
     </style>
+    <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/svg+xml">
 </head>
 
 <body>

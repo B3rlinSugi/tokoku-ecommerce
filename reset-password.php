@@ -79,6 +79,7 @@ input[type="password"]::-webkit-credentials-auto-fill-button{display:none!import
 .auth-icon{width:68px;height:68px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 16px}
 @media(max-width:768px){.left-panel{display:none}.right-panel{width:100%;padding:32px 24px}}
 </style>
+    <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
 <div class="left-panel">

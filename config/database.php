@@ -11,7 +11,13 @@ function getDB() {
     static $pdo = null;
     if ($pdo === null) {
         try {
-            $dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
+            // Auto-create isolated database to prevent collision with Laravel/SpringBoot
+            $dsnInit = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";charset=" . DB_CHARSET;
+            $pdoInit = new PDO($dsnInit, DB_USER, DB_PASS, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+            $pdoInit->exec("CREATE DATABASE IF NOT EXISTS `tokoku_db`");
+
+            // Connect to the isolated database
+            $dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=tokoku_db;charset=" . DB_CHARSET;
             $options = [
                 PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,

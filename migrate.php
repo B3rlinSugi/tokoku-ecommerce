@@ -1,10 +1,10 @@
 <?php
 require_once __DIR__ . '/config/database.php';
 
-// Cek apakah tabel 'users' sudah ada
+// Cek apakah tabel 'produk' sudah ada
 $db = getDB();
 try {
-    $stmt = $db->query("SHOW TABLES LIKE 'users'");
+    $stmt = $db->query("SHOW TABLES LIKE 'produk'");
     if ($stmt->rowCount() > 0) {
         die("<h3>✅ Database sudah dimigrasi sebelumnya!</h3>");
     }

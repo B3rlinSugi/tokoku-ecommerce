@@ -198,6 +198,18 @@ INSERT INTO detail_pesanan (pesanan_id, produk_id, nama_produk, harga, jumlah, s
 (5, 2, 'iPhone 14', 13500000, 1, 13500000),
 (6, 10, 'Charger Fast Charging 65W', 185000, 2, 370000);
 
+-- Tabel Ulasan
+CREATE TABLE IF NOT EXISTS ulasan (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    produk_id INT NOT NULL,
+    user_id INT NOT NULL,
+    rating INT NOT NULL CHECK(rating >= 1 AND rating <= 5),
+    komentar TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (produk_id) REFERENCES produk(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
 -- Ulasan
 INSERT INTO ulasan (produk_id, user_id, rating, komentar, created_at) VALUES
 (1, 2, 5, 'Produk sesuai deskripsi, pengiriman cepat! Samsung A54 kameranya bagus banget, baterai awet. Sangat puas!', DATE_SUB(NOW(), INTERVAL 12 DAY)),

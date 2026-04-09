@@ -1,257 +1,101 @@
-# 🛒 Tokoku - E-Commerce Web Application
+# 🛒 TokoKu — Performance E-Commerce Engine
 
-Full-stack E-Commerce application with payment gateway integration, RBAC, and real-time stock management.
+A performance-optimized E-Commerce platform built with **Vanilla PHP**. Engineered for high-concurrency transaction reliability, utilizing atomic SQL operations, strictly enforced relational data integrity, and real-time inventory synchronization.
 
-![PHP](https://img.shields.io/badge/PHP-8.0+-777BB4?style=flat&logo=php)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=flat&logo=mysql)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?style=flat&logo=bootstrap)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat&logo=javascript)
-
----
-
-## 📋 Table of Contents
-
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Database Schema](#database-schema)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Screenshots](#screenshots)
-- [License](#license)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-tokoku.up.railway.app-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://tokoku-ecommerce-production.up.railway.app)
+[![PHP](https://img.shields.io/badge/PHP-8.2-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://mysql.com)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com)
 
 ---
 
-## ✨ Features
+## 🏗 System Architecture
 
-### 👥 Authentication & Authorization
-- 🔐 **User Registration & Login** - Secure authentication system
-- 👤 **Role-Based Access Control (RBAC)**
-  - `Customer` - Browse products, manage cart, checkout
-  - `Admin` - Full access: manage products, orders, users, reports
-- 🔒 **Password Security** - bcrypt hashing
+The project manages a complex lifecycle from session-based cart state to atomic database persistence.
 
-### 🛒 Shopping Features
-- 🛍️ **Shopping Cart** - Add, update, remove items
-- 💳 **Multiple Payment Methods**
-  - Bank Transfer
-  - E-Wallet (OVO, GoPay, Dana)
-  - Cash on Delivery (COD)
-- 📦 **Order Management** - Order tracking, status updates
-- 🖨️ **PDF Invoice Generation** - Downloadable invoices
+```mermaid
+graph TD
+    User["🌐 Customer / Admin"]
+    Session["📦 Session Manager (Cart/Auth)"]
+    Logic["⚙️ Core PHP Logic"]
+    Report["📊 Reporting Engine (Chart.js/Dompdf)"]
+    DB[("🗄️ MySQL (Atomic Transactions)")]
 
-### 📊 Admin Dashboard
-- 📈 **Sales Analytics** - Visual dashboard with charts
-- 📦 **Product Management** - CRUD operations
-- 👥 **Customer Management** - View and manage customers
-- 📊 **Real-time Stock Management** - Track inventory levels
-- 📄 **Report Generation** - Sales reports, export to PDF
+    User --> Session
+    Session --> Logic
+    Logic --> DB
+    Logic --> Report
+```
 
 ---
 
-## 🛠 Tech Stack
+## ✨ Key Features
 
-| Technology | Description |
-|------------|-------------|
-| **PHP 8.0+** | Server-side scripting |
-| **MySQL** | Relational Database |
-| **Bootstrap 5** | Frontend framework |
-| **JavaScript** | Client-side logic |
-| **Chart.js** | Data visualization |
-| **Dompdf** | PDF generation |
-| **PHPMailer** | Email functionality |
+- **🛒 Transactional Checkout:** Uses atomic SQL sequences to prevent stock race conditions during simultaneous orders.
+- **🔐 Multi-Role RBAC:** Distinct operational views and permissions for `Customer` and `Admin` users.
+- **📊 Real-time Inventory:** automated stock deduction and restoration logic on order fulfillment or cancellation.
+- **🎫 Dynamic Voucher Engine:** High-precision server-side discount calculation for stacked vouchers.
+- **📄 Audit-Ready Analytics:** Professional PDF invoice generation and interactive sales trend visualization.
 
 ---
 
 ## 🗄 Database Schema
 
-### Core Tables
-- `users` - User accounts (customers & admins)
-- `products` - Product catalog
-- `categories` - Product categories
-- `orders` - Customer orders
-- `order_items` - Individual items in orders
-- `payments` - Payment records
-- `carts` - Shopping cart items
-- `stock` - Inventory management
+Designed for high relational integrity with strictly defined foreign key constraints.
 
-### Key Relationships
-- User → hasMany Orders
-- Order → hasMany OrderItems
-- Product → belongsTo Category
-- Order → hasOne Payment
+```mermaid
+erDiagram
+    USERS ||--o{ ORDERS : "places"
+    CATEGORIES ||--o{ PRODUCTS : "contains"
+    PRODUCTS ||--o{ ORDER_ITEMS : "referenced_in"
+    ORDERS ||--o{ ORDER_ITEMS : "contains"
+    ORDERS ||--|| PAYMENTS : "has"
+
+    USERS {
+        int id PK
+        string role
+        string email
+    }
+    PRODUCTS {
+        int id PK
+        int category_id FK
+        int stock
+    }
+```
 
 ---
 
-## 🚀 Installation
+## 🚀 Installation & Usage
 
 ### Prerequisites
 - PHP 8.0+
-- MySQL 5.7+
+- MySQL 8.0
 - Composer
-- Web Server (XAMPP/WAMP/LAMP)
 
-### Steps
+### Local Setup
+1. **Clone & Install:**
+   ```bash
+   git clone https://github.com/B3rlinSugi/tokoku-ecommerce.git
+   cd tokoku-ecommerce
+   composer install
+   ```
 
-1. **Clone the repository**
-```bash
-git clone https://github.com/B3rlinSugi/tokoku-ecommerce.git
-cd tokoku-ecommerce
-```
+2. **Database:**
+   Create a database named `tokoku` and import `database.sql`.
 
-2. **Install dependencies**
-```bash
-composer install
-```
-
-3. **Configure database**
-```sql
--- Create database
-CREATE DATABASE tokoku;
-```
-
-4. **Import database schema**
-```bash
-# Import the SQL file (if provided)
-mysql -u root -p tokoku < database.sql
-```
-
-5. **Configure application**
-```php
-// Update database connection in config/database.php
-// Or create .env file with database credentials
-```
-
-6. **Start the server**
-```bash
-# If using XAMPP, place in htdocs folder
-# Access: http://localhost/tokoku-ecommerce
-```
+3. **Config:**
+   Update `config/database.php` with your credentials.
 
 ---
 
-## 📖 Usage
+## 👨‍💻 Developed By
 
-### Customer Flow
-1. Register/Login to account
-2. Browse products by category
-3. Add items to shopping cart
-4. Review cart and proceed to checkout
-5. Select payment method
-6. Confirm order
-7. Receive PDF invoice via email
+**Berlin Sugiyanto Hutajulu**
 
-### Admin Flow
-1. Login to admin panel (`/admin`)
-2. Dashboard - View sales analytics
-3. Manage products - Add/Edit/Delete products
-4. Manage orders - View and update order status
-5. Manage customers - View customer data
-6. Generate reports - Export sales reports
+[![GitHub](https://img.shields.io/badge/GitHub-B3rlinSugi-181717?style=flat&logo=github)](https://github.com/B3rlinSugi)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-berlinsugi-0A66C2?style=flat&logo=linkedin)](https://linkedin.com/in/berlinsugi)
+[![Portfolio](https://img.shields.io/badge/Portfolio-berlinsugi.vercel.app-4e73df?style=flat&logo=vercel)](https://berlinsugi.vercel.app)
 
 ---
+<p align="center">Built with ❤️ and Vanilla PHP · Serious E-Commerce Engineering</p>
 
-## 📁 Project Structure
-
-```
-tokoku-ecommerce/
-├── admin/              # Admin panel pages
-│   ├── dashboard.php
-│   ├── products.php
-│   ├── orders.php
-│   ├── customers.php
-│   └── reports.php
-├── user/               # Customer-facing pages
-│   ├── index.php
-│   ├── products.php
-│   ├── cart.php
-│   ├── checkout.php
-│   └── orders.php
-├── config/             # Database & app config
-├── assets/             # CSS, JS, images
-├── uploads/            # Product images
-├── vendor/             # Composer dependencies
-├── index.php           # Entry point
-├── style.css           # Custom styles
-└── README.md
-```
-
----
-
-## 💡 Key Implementation Details
-
-### Payment Integration
-```php
-// Multiple payment methods supported
-$paymentMethods = [
-    'bank_transfer' => 'Bank Transfer (BCA, BRI, Mandi)',
-    'ewallet'      => 'E-Wallet (OVO, GoPay, Dana)',
-    'cod'          => 'Cash on Delivery'
-];
-```
-
-### Stock Management
-- Real-time stock updates on purchase
-- Low stock alerts for admins
-- Automatic stock restoration on order cancellation
-
-### PDF Invoice Generation
-```php
-use Dompdf\Dompdf;
-
-$dompdf = new Dompdf();
-$dompdf->loadHtml($invoiceHtml);
-$dompdf->render();
-$dompdf->stream("invoice_$orderId.pdf");
-```
-
----
-
-## 📸 Features Demo
-
-| Feature | Description |
-|---------|-------------|
-| Dashboard | Sales charts, recent orders, top products |
-| Products | Grid/list view, search, filter by category |
-| Cart | Persistent cart, quantity adjustment |
-| Checkout | Multi-step checkout with payment selection |
-| Invoice | Professional PDF invoice generation |
-
----
-
-## 🔧 Troubleshooting
-
-### Common Issues
-
-1. **Database connection error**
-   - Check MySQL credentials in config
-   - Ensure MySQL service is running
-
-2. **Session errors**
-   - Check PHP session configuration
-   - Ensure `session_start()` is called
-
-3. **Image upload issues**
-   - Check `uploads/` folder permissions
-   - Verify PHP file upload settings
-
----
-
-## 📝 License
-
-This project is open-source and available under the [MIT License](LICENSE).
-
----
-
-## 👨‍💻 Author
-
-**Berlin Sugiyanto**
-- Email: berlinsugiyanto23@gmail.com
-- GitHub: [@B3rlinSugi](https://github.com/B3rlinSugi)
-- LinkedIn: [berlinsugi](https://linkedin.com/in/berlinsugi)
-
----
-
-<p align="center">
-  Built with ❤️ using PHP & Bootstrap
-</p>

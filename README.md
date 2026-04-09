@@ -168,28 +168,16 @@ cp config/config.example.php config/config.php
 | Customer | user@tokoku.com | user123 |
 
 ---
+---
 
-## 📁 Struktur Proyek
+## ⚙️ DevOps & Deployment
 
-```
-tokoku-ecommerce/
-├── admin/              # Panel admin (dashboard, orders, products)
-├── assets/             # CSS, JS, images
-├── config/
-│   └── config.php      # Konfigurasi DB & aplikasi
-├── database/
-│   └── tokoku.sql      # Skema DB lengkap + seed data
-├── includes/           # Shared components (header, footer, navbar)
-├── uploads/            # Direktori upload gambar produk
-├── checkout.php        # Halaman checkout
-├── detail_produk.php   # Detail produk
-├── index.php           # Halaman utama / storefront
-├── invoice.php         # PDF invoice generator
-├── keranjang.php       # Keranjang belanja
-├── login.php           # Halaman login
-├── register.php        # Registrasi user
-└── README.md
-```
+Proyek ini menggunakan alur **Continuous Deployment (CD)** untuk otomatisasi rilis:
+
+- **Platform Deployment**: [Railway](https://railway.app)
+- **Strategi Deployment**: Manajemen rilis otomatis yang dipicu oleh `git push` ke branch `main`.
+- **Konkurensi**: Database dioptimalkan untuk menangani beban transaksi tinggi secara bersamaan di lingkungan produksi.
+- **Reporting**: Pembuatan PDF dinamis sebagai tugas latar belakang (background task) server yang terotomasi.
 
 ---
 
@@ -210,7 +198,7 @@ InnoDB mendukung foreign key constraints dan transaksi ACID, yang sangat kritis 
 
 <div align="center">
 
-**Berlin Sugiyanto**
+**Berlin Sugiyanto Hutajulu**
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-berlinsugi-0077B5?style=flat-square&logo=linkedin)](https://linkedin.com/in/berlinsugi)
 [![Portfolio](https://img.shields.io/badge/Portfolio-berlinsugi.vercel.app-4e73df?style=flat-square&logo=vercel)](https://berlinsugi.vercel.app)

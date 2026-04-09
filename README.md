@@ -122,15 +122,14 @@ Database terdiri dari **10 tabel** dengan foreign key constraints dan indexing y
 
 ## 🛠️ Tech Stack
 
-| Layer | Teknologi | Alasan Pemilihan |
-|---|---|---|
-| Language | PHP 8.x | Mature ecosystem, native PDO support |
-| Database | MySQL 8 (InnoDB) | FK constraints + ACID transactions |
-| DB Access | PDO + Prepared Statements | SQL injection prevention, DB-agnostic |
-| Frontend | Bootstrap 5, HTML5, CSS3, JS | Responsive UI yang konsisten |
-| Charts | Chart.js | Lightweight, flexible data visualization |
-| Security | bcrypt, RBAC, CSRF Token | Industry-standard password & access control |
-| Version Control | Git & GitHub | Collaborative development |
+| Layer | Teknologi |
+|---|---|
+| Language | PHP 8.x |
+| Database | MySQL 8 (InnoDB) |
+| DB Access | PDO + Prepared Statements |
+| Frontend | Bootstrap 5, HTML5, CSS3, JavaScript |
+| Charts | Chart.js |
+| Security | bcrypt, RBAC, CSRF Token |
 
 ---
 
@@ -168,29 +167,28 @@ cp config/config.example.php config/config.php
 | Customer | user@tokoku.com | user123 |
 
 ---
----
 
 ## ⚙️ DevOps & Deployment
 
 Proyek ini menggunakan alur **Continuous Deployment (CD)** untuk otomatisasi rilis:
 
 - **Platform Deployment**: [Railway](https://railway.app)
-- **Strategi Deployment**: Manajemen rilis otomatis yang dipicu oleh `git push` ke branch `main`.
-- **Konkurensi**: Database dioptimalkan untuk menangani beban transaksi tinggi secara bersamaan di lingkungan produksi.
-- **Reporting**: Pembuatan PDF dinamis sebagai tugas latar belakang (background task) server yang terotomasi.
+- **Workflow**: Automated triggers on `git push` to `main`.
+- **Concurrency**: Database dioptimalkan untuk menangani beban transaksi tinggi secara bersamaan.
+- **Reporting**: Background task server-side untuk pembuatan PDF invoice dinamis.
 
 ---
 
 ## 🔑 Keputusan Teknis
 
 **Mengapa PDO bukan MySQLi?**
-PDO menyediakan antarmuka yang konsisten dan mendukung prepared statements secara native, mengurangi risiko SQL injection sambil tetap database-agnostic untuk migrasi di masa depan.
+PDO menyediakan antarmuka yang konsisten dan mendukung prepared statements secara native, mengurangi risiko SQL injection sambil tetap database-agnostic.
 
 **Mengapa bcrypt bukan MD5/SHA1?**
-bcrypt dirancang untuk mahal secara komputasi dan menyertakan salt secara default, membuat brute-force dan rainbow table attack jauh lebih sulit dibanding algoritma hashing lama.
+bcrypt dirancang untuk mahal secara komputasi dan menyertakan salt secara default, membuatnya standar industri untuk keamanan password.
 
 **Mengapa InnoDB bukan MyISAM?**
-InnoDB mendukung foreign key constraints dan transaksi ACID, yang sangat kritis untuk menjaga integritas data order dan pembayaran.
+InnoDB mendukung foreign key constraints dan transaksi ACID, yang sangat kritis untuk menjaga integritas data order dan pembayaran toko online.
 
 ---
 
@@ -200,17 +198,12 @@ InnoDB mendukung foreign key constraints dan transaksi ACID, yang sangat kritis 
 
 **Berlin Sugiyanto Hutajulu**
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-berlinsugi-0077B5?style=flat-square&logo=linkedin)](https://linkedin.com/in/berlinsugi)
-[![Portfolio](https://img.shields.io/badge/Portfolio-berlinsugi.vercel.app-4e73df?style=flat-square&logo=vercel)](https://berlinsugi.vercel.app)
-[![Email](https://img.shields.io/badge/Email-berlinsugiyanto23%40gmail.com-D14836?style=flat-square&logo=gmail)](mailto:berlinsugiyanto23@gmail.com)
-[![GitHub](https://img.shields.io/badge/GitHub-B3rlinSugi-181717?style=flat-square&logo=github)](https://github.com/B3rlinSugi)
-
-</div>
+[![GitHub](https://img.shields.io/badge/GitHub-B3rlinSugi-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/B3rlinSugi)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-berlinsugi-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/berlinsugi)
+[![Portfolio](https://img.shields.io/badge/Portfolio-berlinsugi.vercel.app-4e73df?style=for-the-badge&logo=vercel&logoColor=white)](https://berlinsugi.vercel.app)
 
 ---
 
-<div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f3460,50:16213e,100:1a1a2e&height=100&section=footer" />
+Built with ❤️ and Modern PHP · E-Commerce Engineering Simplified
 
 </div>

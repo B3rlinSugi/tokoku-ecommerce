@@ -1,210 +1,112 @@
 <div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1a1a2e,50:16213e,100:0f3460&height=180&section=header&text=TokoKu%20E-Commerce&fontSize=45&fontColor=e94560&animation=fadeIn&fontAlignY=38&desc=Full-Stack%20E-Commerce%20Platform%20%7C%20PHP%208%20%7C%20MySQL%20%7C%20RBAC&descAlignY=55&descColor=a8b2d8" />
-
-<a href="https://readme-typing-svg.herokuapp.com"><img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=15&duration=3000&pause=1000&color=E94560&center=true&vCenter=true&width=535&lines=🛒+Full-Stack+B2C+E-Commerce+Platform;🏭+Backend-First+Design+Pattern;📦+Real-Time+Inventory+%26+Stock+Constraints;🎫+Dynamic+Voucher+Generation+Engine" alt="Typing SVG" /></a>
-[![PHP](https://img.shields.io/badge/PHP-8.x-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
-[![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://mysql.com)
-[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com)
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Railway-0B0D0E?style=for-the-badge&logo=railway&logoColor=white)](https://tokoku-ecommerce-production.up.railway.app/)
-[![Status](https://img.shields.io/badge/Status-Complete-brightgreen?style=for-the-badge)](https://github.com/B3rlinSugi/tokoku-ecommerce)
-[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
-
+  <br />
+  <h1>🛒 Tokoku E-Commerce</h1>
+  <p>
+    <strong>A Robust Native PHP Backend for E-Commerce Operations</strong>
+  </p>
+  <p>
+    <img src="https://img.shields.io/badge/PHP_8-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP 8" />
+    <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
+    <img src="https://img.shields.io/badge/Bootstrap_5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap" />
+    <img src="https://img.shields.io/badge/PDO-000000?style=for-the-badge&logo=php&logoColor=white" alt="PDO Database" />
+  </p>
+  <p>
+    <a href="https://tokoku-ecommerce.vercel.app/" target="_blank">View Live Demo</a>
+  </p>
 </div>
-
----
-
-## 🌐 Live Demo
-
-> **[https://tokoku-ecommerce-production.up.railway.app](https://tokoku-ecommerce-production.up.railway.app/)**
-
-Aplikasi sudah di-deploy di Railway dan dapat diakses secara publik. Gunakan kredensial di bawah untuk mencoba.
 
 ---
 
 ## 📌 Overview
 
-**TokoKu** adalah platform e-commerce full-stack yang dibangun dengan pendekatan **backend-first**, dirancang untuk menangani kompleksitas transaksi dunia nyata. Dibangun dari nol dengan fokus pada integritas database, keamanan, dan keterbacaan kode.
+**Tokoku E-Commerce** is a comprehensive, backend-heavy e-commerce platform built entirely from scratch using Native PHP 8 and MySQL. This project demonstrates strong foundational knowledge in server-side web development without relying on high-level frameworks like Laravel. 
 
-> 💡 **Mengapa proyek ini penting?** TokoKu mencakup seluruh siklus hidup pesanan — dari keranjang belanja hingga konfirmasi pembayaran — menggunakan pola desain yang konsisten dan skema database yang solid dengan 10 tabel relasional.
+The system handles the full user shopping lifecycle—from product catalogs, persistent shopping carts, and dynamic vouchers, to secure Role-Based Authentication and a complete admin management dashboard.
 
-### 🏆 Hasil Pengujian
+## ✨ Key Features
 
-| Metrik | Hasil |
-|---|---|
-| End-to-end transaction (semua metode pembayaran) | ✅ **0 kegagalan** |
-| Percobaan akses tidak sah (QA testing) | ✅ **0 insiden** |
-| Edge case voucher (expired, sudah dipakai, invalid) | ✅ **Semua tertangani** |
-| Integritas stok setelah order | ✅ **Konsisten** |
+- **Custom Native MVC Architecture**: Clean separation of concerns routing through raw PHP.
+- **Role-Based Access Control (RBAC)**: Secure authentication utilizing `bcrypt` password hashing for both `Customer` and `Admin` roles.
+- **Complex Relational Database**: Features a highly normalized 10-table MySQL database structure maintaining strict referential integrity.
+- **Dynamic Cart & Voucher System**: Real-time stock decrementing, persistent cart logic, and advanced discount engine based on coupon codes.
+- **Automated PDF Invoices**: Integrated `DomPDF` for generating and downloading professional invoice receipts.
+- **Email Notifications**: Integrated `PHPMailer` for password resets and order confirmations.
 
----
-
-## ✨ Fitur Utama
-
-### 🔐 Autentikasi & Keamanan
-- Role-Based Access Control (RBAC) — **Admin** dan **Customer**
-- Password hashing dengan **bcrypt** (cost factor 12)
-- Password reset melalui **secure random token** (tokenized)
-- Session-based authentication + proteksi CSRF
-
-### 🛍️ Produk & Inventaris
-- Manajemen produk dengan kategori
-- **Real-time stock tracking** — otomatis berkurang saat order
-- Stock log history untuk audit trail
-
-### 🧾 Order & Pembayaran
-- Siklus order lengkap: `Cart → Checkout → Pembayaran → Konfirmasi → Diterima`
-- **Multi-payment method**: Transfer Bank, E-Wallet
-- **Voucher engine** dengan batas penggunaan dan validasi expiry
-
-### 📊 Admin Dashboard
-- Grafik revenue 6 bulan menggunakan **Chart.js**
-- Overview dan manajemen status pesanan
-- Panel manajemen produk & stok
-- **PDF invoice** per transaksi
+> [!NOTE]
+> **Honesty & Transparency regarding Payment Gateway**  
+> Currently, the payment processing feature is **purely a simulation** (dummy checkout). It allows users to complete the order flow and updates the database status successfully, but no real financial transactions or third-party payment gateway integrations (like Stripe/Midtrans) have been implemented yet. This keeps the application safe for demonstration purposes.
 
 ---
 
-## 🗄️ Desain Database
+## 🛠️ Tech Stack Architecture
 
-Database terdiri dari **10 tabel** dengan foreign key constraints dan indexing yang tepat:
+### Core Technologies
+- **Backend**: PHP 8 (Native)
+- **Database**: MySQL 8 (Prepared Statements via PDO to prevent SQL Injection)
+- **Frontend**: HTML5, CSS3, Bootstrap 5, Chart.js (for Admin Analytics)
+- **Dependency Management**: Composer
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                      DATABASE SCHEMA                        │
-├──────────────────┬──────────────────────────────────────────┤
-│ Table            │ Deskripsi                                │
-├──────────────────┼──────────────────────────────────────────┤
-│ users            │ Akun pengguna dengan diferensiasi role   │
-│ categories       │ Master kategori produk                   │
-│ products         │ Katalog produk dengan kategori           │
-│ product_stock    │ Tracking stok real-time per produk       │
-│ stock_logs       │ Audit log pergerakan stok                │
-│ orders           │ Header pesanan dengan lifecycle status   │
-│ order_items      │ Line item per pesanan                    │
-│ payments         │ Rekaman pembayaran dengan metode & status│
-│ vouchers         │ Voucher diskon dengan aturan validasi    │
-│ voucher_usage    │ Tracking penggunaan voucher per user     │
-└──────────────────┴──────────────────────────────────────────┘
-```
+### Packages & Libraries
+- `phpmailer/phpmailer`: For SMTP email processing.
+- `dompdf/dompdf`: For HTML to PDF conversion (Invoices).
 
 ---
 
-## 🏗️ Arsitektur Sistem
+## 🗄️ Database Structure
 
-```
-┌─────────────────────────────────────────────┐
-│               CLIENT LAYER                  │
-│       Browser (HTML/CSS/Bootstrap 5)        │
-└────────────────────┬────────────────────────┘
-                     │ HTTP Request
-┌────────────────────▼────────────────────────┐
-│            APPLICATION LAYER (PHP 8)        │
-│                                             │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  │
-│  │  Auth    │  │  Order   │  │ Product  │  │
-│  │ (RBAC)   │  │  Engine  │  │ & Stock  │  │
-│  └──────────┘  └──────────┘  └──────────┘  │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  │
-│  │ Voucher  │  │ Payment  │  │  Admin   │  │
-│  │  Engine  │  │ Gateway  │  │Dashboard │  │
-│  └──────────┘  └──────────┘  └──────────┘  │
-└────────────────────┬────────────────────────┘
-                     │ PDO (Prepared Statements)
-┌────────────────────▼────────────────────────┐
-│             DATABASE LAYER                  │
-│            MySQL 8 (InnoDB)                 │
-│  users │ products │ orders │ order_items    │
-│  payments │ vouchers │ stock_logs │ ...     │
-└─────────────────────────────────────────────┘
-```
+The project utilizes a strict relational schema designed for e-commerce logic. Key entities include:
+- `users`: Stores encrypted credentials (`bcrypt`) and roles.
+- `products` & `categories`: Inventory management.
+- `orders` & `order_items`: Tracks transactional history and snapshots product prices at checkout.
+- `vouchers`: Manages discount logic and expiration dates.
+- `cart`: Persistent database-driven cart (no local storage dependency).
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 Getting Started
 
-| Layer | Teknologi |
-|---|---|
-| Language | PHP 8.x |
-| Database | MySQL 8 (InnoDB) |
-| DB Access | PDO + Prepared Statements |
-| Frontend | Bootstrap 5, HTML5, CSS3, JavaScript |
-| Charts | Chart.js |
-| Security | bcrypt, RBAC, CSRF Token |
+### Prerequisites
+- **XAMPP / Laragon** or any environment running Apache & PHP 8.x
+- **MySQL** Database
+- **Composer** (for installing dependencies)
 
----
+### Installation Guide
 
-## 🚀 Cara Menjalankan
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/B3rlinSugi/tokoku-ecommerce.git
+   cd tokoku-ecommerce
+   ```
 
-### Prasyarat
-- PHP 8.x
-- MySQL 8.0+
-- XAMPP / Laragon / web server lokal
+2. **Install PHP Dependencies:**
+   ```bash
+   composer install
+   ```
 
-### Instalasi
+3. **Database Configuration:**
+   - Open phpMyAdmin or your MySQL client.
+   - Create a new database named `ecommerce`.
+   - Import the SQL dump located at `database/ecommerce.sql`.
 
-```bash
-# 1. Clone repository
-git clone https://github.com/B3rlinSugi/tokoku-ecommerce.git
-cd tokoku-ecommerce
+4. **Environment Setup:**
+   - Locate the configuration file (e.g., `config/database.php`).
+   - Ensure the PDO connection strings match your local MySQL credentials (`root` without password by default on XAMPP).
 
-# 2. Import database
-mysql -u root -p < database/tokoku.sql
-
-# 3. Konfigurasi koneksi database
-cp config/config.example.php config/config.php
-# Edit config.php dengan kredensial DB kamu
-
-# 4. Jalankan aplikasi
-# Letakkan folder di htdocs (XAMPP) atau www (Laragon)
-# Akses via: http://localhost/tokoku-ecommerce
-```
-
-### Kredensial Default
-
-| Role | Email | Password |
-|---|---|---|
-| Admin | admin@tokoku.com | admin123 |
-| Customer | user@tokoku.com | user123 |
+5. **Run the Application:**
+   - Place the project folder inside your `htdocs` or `www` directory.
+   - Access via browser: `http://localhost/tokoku-ecommerce`
 
 ---
 
-## ⚙️ DevOps & Deployment
+## 👨‍💻 Author
 
-Proyek ini menggunakan alur **Continuous Deployment (CD)** untuk otomatisasi rilis:
-
-- **Platform Deployment**: [Railway](https://railway.app)
-- **Workflow**: Automated triggers on `git push` to `main`.
-- **Concurrency**: Database dioptimalkan untuk menangani beban transaksi tinggi secara bersamaan.
-- **Reporting**: Background task server-side untuk pembuatan PDF invoice dinamis.
+**Berlin Sugiyanto**  
+Backend Developer & System Architect  
+- Portfolio: [berlinsugi.vercel.app](https://berlinsugi.vercel.app/)
+- LinkedIn: [linkedin.com/in/berlinsugi](https://linkedin.com/in/berlinsugi)
 
 ---
-
-## 🔑 Keputusan Teknis
-
-**Mengapa PDO bukan MySQLi?**
-PDO menyediakan antarmuka yang konsisten dan mendukung prepared statements secara native, mengurangi risiko SQL injection sambil tetap database-agnostic.
-
-**Mengapa bcrypt bukan MD5/SHA1?**
-bcrypt dirancang untuk mahal secara komputasi dan menyertakan salt secara default, membuatnya standar industri untuk keamanan password.
-
-**Mengapa InnoDB bukan MyISAM?**
-InnoDB mendukung foreign key constraints dan transaksi ACID, yang sangat kritis untuk menjaga integritas data order dan pembayaran toko online.
-
----
-
-## 👤 Author
 
 <div align="center">
-
-**Berlin Sugiyanto Hutajulu**
-
-[![GitHub](https://img.shields.io/badge/GitHub-B3rlinSugi-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/B3rlinSugi)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-berlinsugi-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/berlinsugi)
-[![Portfolio](https://img.shields.io/badge/Portfolio-berlinsugi.vercel.app-4e73df?style=for-the-badge&logo=vercel&logoColor=white)](https://berlinsugi.vercel.app)
-
----
-
-Built with ❤️ and Modern PHP · E-Commerce Engineering Simplified
-
+  <i>"Building from scratch teaches you what frameworks hide."</i>
 </div>
